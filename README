@@ -1,0 +1,48 @@
+Whoops-logger.js 0.0.1
+(c) 2011 Evgeniy Solovyov
+This is plugin that helps to save logs to whoops log server
+For all details and documentation: https:github.com/lunsher/whoops-logger.js
+
+Usage:
+
+1. Include undesrscore.js, jQuery and this script itself and then
+ Whoops.whoops_srv_cfg = {
+  host: "http:someserver.com"
+ }
+
+2. Create one or more loggers:
+
+Whoops.create_logger(logger_name,{default_attributes - hash})
+or without defaults Whoops.create_logger(logger_name)
+These functions will return loggers objects but it is not nesessary - see below "Perform logging"
+
+Ex:
+ var new_logger =  Whoops.create_logger('my_super_logger',{
+    "event_type": "Notice"
+    ,"service":'MyApplication.Web'
+    ,"environment":'production'
+    ,'message': "Notification about something"
+    ,'event_group_identifier':"Web"
+  });
+
+3. Perform logging
+
+3.1 Using logger object
+
+ new_logger.log(data_hash);
+
+3.2 Using Whoops
+
+ Whoops.log(logger_name,data_hash);
+
+4. Data hash  consists of following properties:
+
+  data_hash = {
+    "event_type": "",
+    "service":"",
+    "environment":"",
+    "message":"",
+    "event_group_identifier":"",
+    "event_time":"",
+    "details":""
+  }
